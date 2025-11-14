@@ -1,0 +1,4 @@
+aqui a gnte vai botar todos as bibliotecas que usamos so pra gente 
+conseguir se comunicar melhor. Por enquanto usei:
+pip install python-dotenv(esse é pra esconder a chave api)
+pip install python-binance(esse é pra integrar com a api)
