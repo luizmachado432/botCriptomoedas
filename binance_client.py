@@ -1,15 +1,28 @@
 from binance.client import Client
 from binance.exceptions import BinanceAPIException, BinanceOrderException
-
+from dotenv import load_dotenv
+import os
 
 class BinanceClient:
-    def __init__(self, api_key: str, api_secret: str):
-        # URL da TESTNET para Spot Trading
-        self.TESTNET_URL = "https://testnet.binance.vision"
+    
+    
+    def __init__(self, api_key: str = None, api_secret: str = None):
+        load_dotenv()
+    # preferir argumentos passados; senão, pegar do .env
+        if api_key is None:
+            api_key = os.getenv("API_KEY")
+        if api_secret is None:
+            api_secret = os.getenv("API_SECRET")
 
-        # Instancia o client
-        self.client = Client(api_key, api_secret)
-        self.client.API_URL = self.TESTNET_URL
+        if not api_key or not api_secret:
+            raise SystemExit("API_KEY e API_SECRET não definidos (args ou .env)")
+
+        self.api_key = api_key
+        self.api_secret = api_secret
+        
+        # PARA:
+    # Instancia o client em modo de teste (testnet)
+        self.client = Client(api_key, api_secret, testnet=True)
 
     # Consulta o preço atual de um símbolo
     def get_price(self, symbol: str):
