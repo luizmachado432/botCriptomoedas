@@ -20,7 +20,6 @@ class BinanceClient:
         self.api_key = api_key
         self.api_secret = api_secret
         
-        # PARA:
     # Instancia o client em modo de teste (testnet)
         self.client = Client(api_key, api_secret, testnet=True)
 
