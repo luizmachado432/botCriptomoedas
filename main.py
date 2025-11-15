@@ -2,4 +2,6 @@ from binance_client import BinanceClient
 
 client = BinanceClient()
 
-print(client.get_price("BTCUSDT"))
+valor = client.get_price("BTCUSDT")
+
+print(f"Preço atual do BTC USDT: {valor}")
