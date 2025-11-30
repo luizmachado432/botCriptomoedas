@@ -1,3 +1,7 @@
+#este codigo cria um modelo base chamado tradingstrategy
+#ele serve como uma regra para todas as outras estrategias
+#ele obriga que qualquer estrategia tenha a funcao computesignals
+#que e responsavel por calcular os sinais de compra e venda
 from abc import ABC, abstractmethod
 import pandas as pd
 

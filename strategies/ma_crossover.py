@@ -11,22 +11,7 @@ class MovingAverageCrossover(TradingStrategy):
         self.long = int(long_period)
 
     def compute_signals(self, df: pd.DataFrame) -> pd.DataFrame:
-        """
-        calcula os sinais de trading com base na estrategia de cruzamento de medias moveis
-
-        esta função recebe um DataFrame com o historico de preços (no minimo,
-        uma coluna 'close') e adiciona quatro novas colunas:
-        - MA_SHORT: A Media Móvel Simples de período curto.
-        - MA_LONG: A Media Móvel Simples de período longo.
-        - signal: Indica a tendência atual (1 para alta, -1 para baixa).
-        - position: Indica o evento de cruzamento (1 para compra, -1 para venda, 0 para manter).
-
-        Args:
-            df (pd.DataFrame): o DataFrame com os dados de preço
-
-        Returns:
-            pd.DataFrame: O DataFrame original enriquecido com as colunas da estrategia
-        """
+        
         df = df.copy()
         # calcula a media movel curta (MA_SHORT)
         #.rolling(self.short) cria uma "janela" movel com os últimos 'self.short' preços

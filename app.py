@@ -55,7 +55,7 @@ class App:
         self.strategy = MovingAverageCrossover(short, long)
 
     
-    # COMPRA FORÇADA (registra CSV/JSON)
+    # COMPRA FORÇADA 
     
     def force_buy(self):
         print(">>> Forçando COMPRA")
@@ -68,10 +68,10 @@ class App:
             print("$$ Sem saldo para comprar")
             return
 
-        # Executa compra no portfólio (paper trading)
+        # Executa compra no portfólio 
         self.portfolio.buy(price, qty)
 
-        # pega o trade registrado pelo Portfolio (último)
+        # pega o trade registrado pelo Portfolio 
         trade = self.portfolio.history[-1]
 
         # registra no CSV/JSON via logger_io
@@ -81,7 +81,7 @@ class App:
         print(f"$$ COMPRA FORÇADA: qty={qty:.6f} a price={price:.2f}")
 
    
-    # VENDA FORÇADA (registra CSV/JSON)
+    # VENDA FORÇADA 
     
     def force_sell(self):
         print(">>> Forçando VENDA")
@@ -94,10 +94,10 @@ class App:
             print("$$ Sem ativo para vender")
             return
 
-        # Executa venda no portfólio (paper trading)
+        # Executa venda no portfólio 
         self.portfolio.sell(price, qty)
 
-        # pega o trade registrado pelo Portfolio (último)
+        # pega o trade registrado pelo Portfolio 
         trade = self.portfolio.history[-1]
 
         # registra no CSV/JSON via logger_io
@@ -164,13 +164,13 @@ class App:
                 price = float(last["close"])
                 pos = last["position"]
 
-                # DEBUG: mostrar médias e sinal
+                # Exibe informações do candle e sinal
                 ma_short = last.get("MA_SHORT", None)
                 ma_long = last.get("MA_LONG", None)
                 print("--------------------------------------------------")
                 print(f"Preço fechado: {price:.6f}")
                 if ma_short is not None and ma_long is not None:
-                    print(f"MA_SHORT={ma_short:.6f} | MA_LONG={ma_long:.6f} | position={pos}")
+                    print(f"MA_SHORT={ma_short:.6f} | MA_LONG={ma_long:.6f}")
                 else:
                     print(f"position={pos}")
 
@@ -199,9 +199,9 @@ class App:
                     else:
                         print("$ Sinal de VENDA, mas sem ativos para vender")
 
-                # Status do portfólio
+                # status do portfolio
                 total = self.portfolio.total_value(price)
-                print(f"[STATUS] dineiro ={self.portfolio.cash:.2f} USDT | ativos={self.portfolio.base:.6f} | total≈{total:.2f} USDT")
+                print(f"[STATUS] dineiro ={self.portfolio.cash:.2f} USDT | ativos={self.portfolio.base:.6f} | total={total:.2f} USDT")
 
                 time.sleep(poll_seconds)
 

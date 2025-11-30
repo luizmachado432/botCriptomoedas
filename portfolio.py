@@ -26,15 +26,11 @@ class Portfolio:
         }
         self.history.append(record)
         return record
-
-    # =============================
-    #         COMPRA CORRIGIDA
-    # =============================
+    
     def buy(self, price, qty):
         price = float(price)
         qty = float(qty)
 
-        # proteção contra bugs
         if price <= 0 or qty <= 0:
             print("$ Compra ignorada: preço ou quantidade inválidos.")
             return None
